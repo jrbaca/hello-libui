@@ -11,7 +11,7 @@ val os = org.gradle.internal.os.OperatingSystem.current()!!
 
 kotlin {
     when {
-        os.isWindows -> mingwX86("libui")
+        os.isWindows -> mingwX64("libui")
         os.isMacOsX -> macosX64("libui")
         os.isLinux -> linuxX64("libui")
         else -> throw Error("Unknown host")
@@ -35,7 +35,7 @@ fun org.jetbrains.kotlin.gradle.plugin.mpp.Executable.windowsResources(rcFileNam
 
     val windresTask = tasks.create<Exec>(taskName) {
         val konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
-        val konanLlvmDir = "$konanUserDir/dependencies/msys2-mingw-w64-i686-clang-llvm-lld-compiler_rt-8.0.1/bin"
+        val konanLlvmDir = "$konanUserDir/dependencies/msys2-mingw-w64-x86_64-clang-llvm-lld-compiler_rt-8.0.1/bin"
 
         inputs.file(inFile)
         outputs.file(outFile)
